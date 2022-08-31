@@ -1,0 +1,19 @@
+{
+  "name": "sonata",
+  "version": "5.0.0",
+  "description": "A serverless Discord bot based on CloudFlare Workers for BotiCord.top",
+  "main": "index.js",
+  "author": {
+    "name": "cipherka",
+    "url": "https://sqdsh.top/"
+  },
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "discord-interactions": "^3.2.0"
+  },
+  "devDependencies": {
+    "dotenv-flow": "^3.2.0",
+    "node-fetch": "^2.6.7"
+  }
+}
