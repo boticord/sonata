@@ -52,11 +52,12 @@ async function handleRequest(request) {
       guild_id: request.headers.get("X-Development-Guild"),
     });
   } else {
-    const interaction = await request.json();
     const signature = request.headers.get("X-Signature-Ed25519");
     const timestamp = request.headers.get("X-Signature-Timestamp");
     if (!signature || !timestamp)
       return Response.redirect("https://boticord.top");
+
+    const interaction = await request.json();
     if (
       !(await verifyKey(
         JSON.stringify(interaction),

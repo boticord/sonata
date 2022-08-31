@@ -36,7 +36,7 @@ module.exports = {
       }
     ).then((r) => r.json());
 
-    let { message: content } = await fetch(
+    let { updated, message: content } = await fetch(
       `https://api.boticord.top/v2/server`,
       {
         method: "POST",
@@ -51,7 +51,7 @@ module.exports = {
           serverName: guild.name,
           serverAvatar: `https://cdn.discordapp.com/icons/${guild.id}/${
             guild.icon
-          }.${guild.icon.includes("a_") ? "gif" : "webp"}?size=512`,
+          }.${String(guild.icon).startsWith("a_") ? "gif" : "webp"}?size=512`,
           serverMembersAllCount: guild.approximate_member_count,
           serverMembersOnlineCount: guild.approximate_presence_count,
           serverOwnerID: owner.user.id,
@@ -62,7 +62,7 @@ module.exports = {
 
     return respond({
       type: 4,
-      data: { content },
+      data: { flags: !updated ? 64 : 0, content },
     });
   },
 };

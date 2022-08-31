@@ -27,7 +27,7 @@ module.exports = {
                 type: 2,
                 style: 5,
                 label: "Пригласить бота на сервер",
-                url: `https://discord.com/api/oauth2/authorize?client_id=${client_id}&scope=bot%20applications.commands`,
+                url: `https://discord.com/api/oauth2/authorize?client_id=${client_id}&permissions=265216&scope=bot%20applications.commands`,
               },
               {
                 type: 2,
