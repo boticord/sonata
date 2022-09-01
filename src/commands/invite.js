@@ -19,6 +19,12 @@ module.exports = {
               {
                 type: 2,
                 style: 5,
+                label: "Добавить команды бота на сервер",
+                url: `https://discord.com/api/oauth2/authorize?client_id=${client_id}&scope=applications.commands`,
+              },
+              {
+                type: 2,
+                style: 5,
                 label: "Пригласить бота на сервер",
                 url: `https://discord.com/api/oauth2/authorize?client_id=${client_id}&permissions=265216&scope=bot%20applications.commands`,
               },
