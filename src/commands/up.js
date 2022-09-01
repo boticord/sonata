@@ -29,6 +29,16 @@ module.exports = {
       }
     ).then((r) => r.json());
 
+    if (guild?.code === 0 || owner?.code === 0)
+      return respond({
+        type: 4,
+        data: {
+          flags: 64,
+          content:
+            ":x: Команда не может быть выполнена в связи с блокировкой на стороне Discord API.\nВы всегда можете воспользоваться **BumpBot**: https://boticord.top/bot/bump",
+        },
+      });
+
     let { updated, message: content } = await fetch(
       `https://api.boticord.top/v2/server`,
       {
