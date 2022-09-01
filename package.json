@@ -7,7 +7,6 @@
     "name": "cipherka",
     "url": "https://sqdsh.top/"
   },
-  "private": true,
   "license": "MIT",
   "devDependencies": {
     "dotenv-flow": "^3.2.0",
