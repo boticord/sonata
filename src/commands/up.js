@@ -39,7 +39,28 @@ module.exports = {
         },
       });
 
-    let { updated, message: content } = await fetch(
+    let content = [];
+    let body = {
+      serverID: interaction.guild_id,
+      up: 1,
+      status: 1,
+    };
+    if (guild?.code === 0 || owner?.code === 0) {
+      content.push(
+        `:warning: Discord API выдало блокировку, поэтому информация о сервере на сайте не обновлена.\n`
+      );
+    } else {
+      body.serverName = guild.name;
+      body.serverAvatar = `https://cdn.discordapp.com/icons/${guild.id}/${
+        guild.icon
+      }.${String(guild.icon).startsWith("a_") ? "gif" : "webp"}?size=512`;
+      body.serverMembersAllCount = guild.approximate_member_count;
+      body.serverMembersOnlineCount = guild.approximate_presence_count;
+      body.serverOwnerID = owner.id;
+      body.serverOwnerTag = `${owner.username}#${owner.discriminator}`;
+    }
+
+    let { updated, message } = await fetch(
       `https://api.boticord.top/v2/server`,
       {
         method: "POST",
@@ -47,25 +68,14 @@ module.exports = {
           Authorization: `Bot ${boticordToken}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          serverID: guild.id,
-          up: 1,
-          status: 1,
-          serverName: guild.name,
-          serverAvatar: `https://cdn.discordapp.com/icons/${guild.id}/${
-            guild.icon
-          }.${String(guild.icon).startsWith("a_") ? "gif" : "webp"}?size=512`,
-          serverMembersAllCount: guild.approximate_member_count,
-          serverMembersOnlineCount: guild.approximate_presence_count,
-          serverOwnerID: owner.id,
-          serverOwnerTag: `${owner.username}#${owner.discriminator}`,
-        }),
+        body: JSON.stringify(body),
       }
     ).then((r) => r.json());
 
+    content.push(message);
     return respond({
       type: 4,
-      data: { flags: !updated ? 64 : 0, content },
+      data: { flags: !updated ? 64 : 0, content: content.join("\n") },
     });
   },
 };
