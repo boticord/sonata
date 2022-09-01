@@ -37,7 +37,7 @@ module.exports = {
     };
     if (guild?.code === 0 || owner?.code === 0) {
       content.push(
-        `:warning: Discord API выдало блокировку, поэтому информация о сервере на сайте не обновлена.\n`
+        `:warning: Discord API заблокировала запросы бота, поэтому информация о сервере на сайте не обновлена.\nВсегда можно воспользоваться **BumpBot**: <https://boticord.top/bot/bump>\n`
       );
     } else {
       body.serverName = guild.name;
