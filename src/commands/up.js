@@ -1,11 +1,4 @@
-const respond = (response, status = 200) =>
-  new Response(JSON.stringify(response), {
-    status,
-    headers: {
-      "Content-Type": "application/json",
-      "Content-Encoding": "identity",
-    },
-  });
+import { respond } from "../utils";
 
 module.exports = {
   data: {
@@ -26,7 +19,7 @@ module.exports = {
     ).then((r) => r.json());
 
     let owner = await fetch(
-      `https://discord.com/api/v10/guilds/${guild.id}/members/${guild.owner_id}`,
+      `https://discord.com/api/v10/users/${guild.owner_id}`,
       {
         method: "GET",
         headers: {
@@ -54,8 +47,8 @@ module.exports = {
           }.${String(guild.icon).startsWith("a_") ? "gif" : "webp"}?size=512`,
           serverMembersAllCount: guild.approximate_member_count,
           serverMembersOnlineCount: guild.approximate_presence_count,
-          serverOwnerID: owner.user.id,
-          serverOwnerTag: `${owner.user.username}#${owner.user.discriminator}`,
+          serverOwnerID: owner.id,
+          serverOwnerTag: `${owner.username}#${owner.discriminator}`,
         }),
       }
     ).then((r) => r.json());

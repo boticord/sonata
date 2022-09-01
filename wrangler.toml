@@ -1,7 +1,7 @@
 name = "sonata"
-main = "index.js"
+main = "src/index.js"
 
 compatibility_date = "2022-08-31"
 account_id = "f01450fa385ef00501f77c45cc7b496d"
 workers_dev = true
-node_compat = true
+node_compat = false

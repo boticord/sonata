@@ -1,5 +1,5 @@
-const inviteCommand = require("./commands/invite");
-const upCommand = require("./commands/up");
+const inviteCommand = require("./src/commands/invite");
+const upCommand = require("./src/commands/up");
 const commands = [inviteCommand.data, upCommand.data];
 
 require("dotenv-flow").config();

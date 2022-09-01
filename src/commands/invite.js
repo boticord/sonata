@@ -1,11 +1,4 @@
-const respond = (response, status = 200) =>
-  new Response(JSON.stringify(response), {
-    status,
-    headers: {
-      "Content-Type": "application/json",
-      "Content-Encoding": "identity",
-    },
-  });
+import { respond } from "../utils";
 
 module.exports = {
   data: {
