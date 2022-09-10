@@ -48,7 +48,7 @@ module.exports = {
       upUserID: interaction.user.id,
       upChannelID: interaction.channel_id,
     };
-    if (guild?.code === 0 || owner?.code === 0) {
+    if (guild?.code === 0 || owner?.code === 0 || channel?.code === 0) {
       content.push(
         `:warning: Discord API заблокировала запросы бота, поэтому информация о сервере на сайте не обновлена.\nВсегда можно воспользоваться **BumpBot**: <https://boticord.top/bot/bump>\n`
       );
