@@ -29,11 +29,24 @@ module.exports = {
       }
     ).then((r) => r.json());
 
+    let channel = await fetch(
+      `https://discord.com/api/v10/channels/${interaction.channel_id}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bot ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    ).then((r) => r.json());
+
     let content = [];
     let body = {
       serverID: interaction.guild_id,
       up: 1,
       status: 1,
+      upUserID: interaction.user.id,
+      upChannelID: interaction.channel_id,
     };
     if (guild?.code === 0 || owner?.code === 0) {
       content.push(
@@ -48,6 +61,7 @@ module.exports = {
       body.serverMembersOnlineCount = guild.approximate_presence_count;
       body.serverOwnerID = owner.id;
       body.serverOwnerTag = `${owner.username}#${owner.discriminator}`;
+      body.upChannelName = channel.name;
     }
 
     let { updated, message } = await fetch(
