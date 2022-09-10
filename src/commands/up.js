@@ -45,7 +45,7 @@ module.exports = {
       serverID: interaction.guild_id,
       up: 1,
       status: 1,
-      upUserID: interaction.user.id,
+      upUserID: interaction.member.user.id,
       upChannelID: interaction.channel_id,
     };
     if (guild?.code === 0 || owner?.code === 0 || channel?.code === 0) {
